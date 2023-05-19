@@ -8,7 +8,14 @@ import '../../widget/custom_dialog.dart';
 import '../../widget/custom_list_item.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+
+
+  final _formKey = GlobalKey<FormState>();
+  final _companyNameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +49,22 @@ class HomePage extends StatelessWidget {
                 context: context,
                 barrierDismissible: false,
                 builder: (BuildContext context) =>
-                    customDialog(context: context));
+                    customDialog(
+                        context: context,
+                      formKey: _formKey,
+                      companyController: _companyNameController,
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                      phoneController: _phoneController,
+                      onTap: (){
+                          if(_formKey.currentState!.validate()){
+                            print(_companyNameController.text);
+                            print(_emailController.text);
+                            print(_passwordController.text);
+                            print(_phoneController.text);
+                          }
+                      }
+                    ));
           },
           elevation: 2,
           shape: RoundedRectangleBorder(

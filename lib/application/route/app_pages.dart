@@ -13,6 +13,6 @@ class AppPages {
     GoRoute(
         name: AppRoutes.home,
         path: "/${AppRoutes.home}",
-        builder: ((context, state) => const HomePage())),
+        builder: ((context, state) =>  HomePage())),
   ]);
 }
