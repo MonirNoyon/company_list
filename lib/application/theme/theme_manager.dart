@@ -1,3 +1,4 @@
+import 'package:company_list/utils/constant/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,6 +6,11 @@ import '../../utils/constant/font_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorManager.white,
+      elevation: 0,
+      centerTitle: true
+    ),
     inputDecorationTheme: InputDecorationTheme(
       errorStyle: GoogleFonts.archivoNarrow(
         fontSize: FontSize.s14_5,

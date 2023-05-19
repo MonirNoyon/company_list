@@ -10,7 +10,7 @@ Widget CustomText({
   Color color = Colors.black,
   double textHeight = 1.2,
   int maxLines = 1,
-  TextAlign textAlign = TextAlign.center,
+  TextAlign textAlign = TextAlign.start,
   double topPadding = 0.0,
   double leftPadding = 0.0,
   double rightPadding = 0.0,
