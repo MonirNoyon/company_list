@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
 import 'application/route/app_pages.dart';
 import 'application/theme/theme_manager.dart';
 
 void main() {
-  runApp(const Onboarding());
+  runApp( ProviderScope(child: Onboarding()));
 }
 
 class Onboarding extends StatelessWidget {
