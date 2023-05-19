@@ -4,6 +4,7 @@ import 'package:company_list/utils/constant/font_manager.dart';
 import 'package:company_list/utils/constant/values_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../widget/custom_dialog.dart';
 import '../../widget/custom_list_item.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
             fontSize: FontSize.s18,
             fontWeight: FontWeightManager.semiBold),
       ),
+      backgroundColor: ColorManager.white,
       body: ListView.separated(
         itemCount: 5,
         physics: const BouncingScrollPhysics(),
@@ -35,7 +37,13 @@ class HomePage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) =>
+                    customDialog(context: context));
+          },
           elevation: 2,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppSize.s30)),

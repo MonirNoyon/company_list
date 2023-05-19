@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import 'application/route/app_pages.dart';
 import 'application/theme/theme_manager.dart';
@@ -12,10 +13,14 @@ class Onboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: getApplicationTheme(),
-      routerConfig: AppPages.router,
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          theme: getApplicationTheme(),
+          routerConfig: AppPages.router,
+        );
+      }
     );
   }
 }
