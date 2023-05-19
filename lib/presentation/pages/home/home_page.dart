@@ -1,10 +1,13 @@
 import 'package:company_list/application/riverpod/riverpod_global.dart';
+import 'package:company_list/data/model/add_company_model.dart';
 import 'package:company_list/presentation/widget/custom_text.dart';
 import 'package:company_list/utils/constant/color_manager.dart';
 import 'package:company_list/utils/constant/font_manager.dart';
 import 'package:company_list/utils/constant/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../widget/custom_dialog.dart';
 import '../../widget/custom_list_item.dart';
@@ -86,12 +89,32 @@ class HomePageState extends ConsumerState<HomePage> {
                     emailController: _emailController,
                     passwordController: _passwordController,
                     phoneController: _phoneController,
-                    onTap: () {
+                    onTap: () async{
                       if (_formKey.currentState!.validate()) {
-                        print(_companyNameController.text);
-                        print(_emailController.text);
-                        print(_passwordController.text);
-                        print(_phoneController.text);
+                        AddCompany company = AddCompany(
+                          company_name: _companyNameController.text,
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          phone: _phoneController.text,
+                        );
+
+                        await ref.read(companyProvider.notifier).addCompany(company)
+                        ? Fluttertoast.showToast(
+                            msg: "Company added Successfully",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            backgroundColor: ColorManager.primary,
+                            textColor: Colors.white,
+                        ):Fluttertoast.showToast(
+                            msg: "Something went wrong",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                        );
+                        if(mounted) {
+                          context.pop();
+                        }
                       }
                     }));
           },

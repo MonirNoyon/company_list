@@ -1,6 +1,7 @@
 
 
 import 'package:company_list/data/mapper/company_response_mapper.dart';
+import 'package:company_list/data/model/add_company_model.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../data/datasource/remote_data_source.dart';
@@ -31,6 +32,17 @@ class CompanyRepositories extends ChangeNotifier{
     );
     _companyList = _companyList + _companyResponse.data;
     notifyListeners();
+  }
+
+ Future<bool> addCompany(AddCompany company) async{
+    var response = await _apiImplementer.addCompany(company);
+    if(response.isRight()){
+      return true;
+    }else{
+      print("Something went wrong");
+    }
+    notifyListeners();
+    return false;
   }
 
 }
